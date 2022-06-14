@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Isometric_projecteEquip"
+run/main_scene="res://escenes/debug_sceene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
 
 [physics]
 

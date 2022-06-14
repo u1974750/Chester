@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://sprites/personatge/Rat_Idle.png" type="Texture" id=1]
 [ext_resource path="res://sprites/personatge/Rat_Death.png" type="Texture" id=2]
 [ext_resource path="res://sprites/personatge/Rat_Run.png" type="Texture" id=3]
+[ext_resource path="res://scripts/rat.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -45,7 +46,6 @@ atlas = ExtResource( 3 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="StreamTexture" id=12]
-load_path = "res://.import/Rat_Death_FX.png-9fa7ce0aacecbe2e56db427bdfb1639d.stex"
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = SubResource( 12 )
@@ -83,7 +83,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
+"loop": false,
 "name": "run",
 "speed": 5.0
 }, {
@@ -113,8 +113,88 @@ func set_path(value: PoolVector2Array) -> void:
 	pass
 "
 
-[node name="AnimatedSprite" type="AnimatedSprite"]
+[node name="Node2D" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 4 )
+
+[node name="AreaTop" type="Area2D" parent="."]
+position = Vector2( 32, -16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HoverEffect" type="Polygon2D" parent="AreaTop"]
+visible = false
+color = Color( 0.972549, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaTop"]
+position = Vector2( -0.100002, 0 )
+scale = Vector2( 0.997159, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="AreaBot" type="Area2D" parent="."]
+position = Vector2( -32, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HoverEffect" type="Polygon2D" parent="AreaBot"]
+visible = false
+color = Color( 0.972549, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaBot"]
+position = Vector2( -0.100002, 0 )
+scale = Vector2( 0.997159, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="AreaLeft" type="Area2D" parent="."]
+position = Vector2( -32, -16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HoverEffect" type="Polygon2D" parent="AreaLeft"]
+visible = false
+color = Color( 0.972549, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaLeft"]
+position = Vector2( -0.100002, 0 )
+scale = Vector2( 0.997159, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="AreaRight" type="Area2D" parent="."]
+position = Vector2( 32, 16 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HoverEffect" type="Polygon2D" parent="AreaRight"]
+visible = false
+color = Color( 0.972549, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaRight"]
+position = Vector2( -0.100002, 0 )
+scale = Vector2( 0.997159, 1 )
+polygon = PoolVector2Array( -22, -12, 0, -23, 22, -12, 0, -1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -35 )
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 20 )
 animation = "idle"
-frame = 3
+frame = 1
+playing = true
 script = SubResource( 21 )
+
+[connection signal="mouse_entered" from="AreaTop" to="." method="_on_AreaTop_mouse_entered"]
+[connection signal="mouse_exited" from="AreaTop" to="." method="_on_AreaTop_mouse_exited"]
+[connection signal="mouse_entered" from="AreaBot" to="." method="_on_AreaBot_mouse_entered"]
+[connection signal="mouse_exited" from="AreaBot" to="." method="_on_AreaBot_mouse_exited"]
+[connection signal="mouse_entered" from="AreaLeft" to="." method="_on_AreaLeft_mouse_entered"]
+[connection signal="mouse_exited" from="AreaLeft" to="." method="_on_AreaLeft_mouse_exited"]
+[connection signal="mouse_entered" from="AreaRight" to="." method="_on_AreaRight_mouse_entered"]
+[connection signal="mouse_exited" from="AreaRight" to="." method="_on_AreaRight_mouse_exited"]
