@@ -1,6 +1,11 @@
 extends Node2D
 
-signal checkPosition
+var _canLeft = true
+var _canRight = true
+var _canTop = true
+var _canBot = true
+
+signal enemyTurn
 
 func _ready():
 	$AreaBot/HoverEffect.visible = false
@@ -11,8 +16,9 @@ func _ready():
 func _input(event):
 	if not event is InputEventMouseButton:
 		return
-	if event.button_index == BUTTON_LEFT and event.pressed:
+	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:
 		var previousPos = position
+		Global.turn = 1
 		if $AreaTop/HoverEffect.visible:
 			position.x += 32
 			position.y -= 16
@@ -26,25 +32,42 @@ func _input(event):
 			position.x += 32
 			position.y += 16
 		else:
-			return
+			Global.turn = 0
+			
+		if Global.turn == 1: emit_signal("enemyTurn")
 
-		Global.set_pos(position)
-		emit_signal("checkPosition")
-		
+	
 	
 func getPos():
 	return position
 	
+func _on_Area2D_area_entered(area):
+	if area.name == "AreaTop": _canTop = true
+	elif area.name == "AreaBot": _canBot = true
+	elif area.name == "AreaLeft": _canLeft = true
+	elif area.name == "AreaRight": _canRight = true
 	
+
+func _on_Area2D_area_exited(area):
+	if area.name == "AreaTop": _canTop = false
+	elif area.name == "AreaBot": _canBot = false
+	elif area.name == "AreaLeft": _canLeft = false
+	elif area.name == "AreaRight": _canRight = false
+
+
 	
 func _on_AreaTop_mouse_entered():
-	$AreaTop/HoverEffect.visible = true
+	if _canTop and Global.turn == 0:
+		$AreaTop/HoverEffect.visible = true
 func _on_AreaBot_mouse_entered():
-	$AreaBot/HoverEffect.visible = true
+	if _canBot and Global.turn == 0:
+		$AreaBot/HoverEffect.visible = true
 func _on_AreaLeft_mouse_entered():
-	$AreaLeft/HoverEffect.visible = true
+	if _canLeft and Global.turn == 0:
+		$AreaLeft/HoverEffect.visible = true
 func _on_AreaRight_mouse_entered():
-	$AreaRight/HoverEffect.visible = true
+	if _canRight and Global.turn == 0:
+		$AreaRight/HoverEffect.visible = true
 
 
 func _on_AreaTop_mouse_exited():
@@ -55,3 +78,7 @@ func _on_AreaLeft_mouse_exited():
 	$AreaLeft/HoverEffect.visible = false
 func _on_AreaRight_mouse_exited():
 	$AreaRight/HoverEffect.visible = false
+
+
+func _on_Slime_playerTurn():
+	Global.turn = 0

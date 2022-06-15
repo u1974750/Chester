@@ -4,10 +4,11 @@ export var dir = false #false up i down; true left and right
 export var back = false
 export var blocks = 4
 
+signal playerTurn
+
 var i = 0
 
 func _ready():
-	$Timer.start()
 	$AnimatedSprite.flip_h = back
 
 func _mov():
@@ -30,6 +31,15 @@ func _mov():
 		back = not back
 		$AnimatedSprite.flip_h = back
 		i = 0
+	emit_signal("playerTurn")
+	
 
 func _on_Timer_timeout():
+	print("hola2")
 	_mov()
+	$Timer.wait_time = 1
+
+
+func _on_Node2D_enemyTurn():
+	print("hola")
+	$Timer.start()
