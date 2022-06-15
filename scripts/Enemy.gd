@@ -35,11 +35,11 @@ func _mov():
 	
 
 func _on_Timer_timeout():
-	print("hola2")
 	_mov()
 	$Timer.wait_time = 1
 
 
-func _on_Node2D_enemyTurn():
-	print("hola")
+
+
+func _on_Rat_enemyTurn():
 	$Timer.start()
