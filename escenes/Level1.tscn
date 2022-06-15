@@ -65,6 +65,11 @@ editor_draw_limits = true
 position = Vector2( 992, 433 )
 
 [connection signal="playerTurn" from="Walls/Slime" to="Rat" method="_on_Slime_playerTurn"]
+[connection signal="playerTurn" from="Walls/Slime2" to="Rat" method="_on_Slime_playerTurn"]
 [connection signal="area_entered" from="Area2D" to="Rat" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="Rat" method="_on_Area2D_area_exited"]
-[connection signal="enemyTurn" from="Rat" to="Walls/Slime" method="_on_Node2D_enemyTurn"]
+[connection signal="enemyTurn" from="Rat" to="Walls/Slime" method="_on_Rat_enemyTurn"]
+[connection signal="enemyTurn" from="Rat" to="Walls/Slime2" method="_on_Rat_enemyTurn"]
+[connection signal="enemyTurn" from="Rat" to="Walls/Slime3" method="_on_Rat_enemyTurn"]
+[connection signal="enemyTurn" from="Rat" to="Walls/Slime4" method="_on_Rat_enemyTurn"]
+[connection signal="enemyTurn" from="Rat" to="Walls/Slime5" method="_on_Rat_enemyTurn"]
