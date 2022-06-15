@@ -1,5 +1,5 @@
 extends Node
 
 
-var turn = 0 # 0 jugador, 1 cpu
+var turn = 1 # 0 jugador, 1 cpu
 
