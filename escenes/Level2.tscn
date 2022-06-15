@@ -43,6 +43,7 @@ blocks = 3
 [node name="Slime4" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( -63, 97 )
 dir = true
+back = true
 blocks = 3
 
 [node name="Slime5" parent="Walls" instance=ExtResource( 2 )]
@@ -52,19 +53,17 @@ back = true
 blocks = 3
 
 [node name="Slime6" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( -127, 144 )
+position = Vector2( -143.5, 136 )
 dir = true
 back = true
-blocks = 3
+blocks = 6
 
 [node name="Slime7" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 0.999985, 161 )
 back = true
-blocks = 3
 
 [node name="Slime8" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 49.5, 120.5 )
-blocks = 3
 
 [node name="Rat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 32 )
@@ -74,6 +73,7 @@ scale = Vector2( 1, 1 )
 scale = Vector2( 2, 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -64.5, 20, -16.5, -4.5, 27.5, 17, -20, 42.5, 75.5, 89, 65.5, 95, 66, 100, 107, 121, -47.5, 199.5, -75.5, 186, 52.5, 121.5, 36, 114, 62.5, 101, 62.5, 95.5, 48, 88, 0, 112, 0.5, 115.5, 11, 121, -31.5, 143.5, -48, 135.5, -95.5, 159.5, -68.5, 177, -80, 184, -156, 145.5, 0, 68.5, -0.5, 63 )
 
 [connection signal="playerTurn" from="Walls/Slime" to="Rat" method="_on_Slime_playerTurn"]

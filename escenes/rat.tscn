@@ -186,7 +186,7 @@ position = Vector2( -1, -35 )
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 20 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 script = SubResource( 21 )
 
