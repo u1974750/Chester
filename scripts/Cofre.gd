@@ -20,5 +20,6 @@ func _on_AnimatedSprite_animation_finished():
 		Global.actualLevel += 1
 		get_tree().change_scene("res://escenes/Level2.tscn")
 	elif changeScene and Global.actualLevel == 3:
+		$victory/ColorRect.visible = true
 		Global.actualLevel = 1
 		
