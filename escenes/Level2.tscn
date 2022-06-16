@@ -65,10 +65,10 @@ position = Vector2( 0.999985, 161 )
 back = true
 
 [node name="Slime8" parent="Walls" instance=ExtResource( 2 )]
-position = Vector2( 49.5, 120.5 )
+position = Vector2( 49.5, 120 )
 
 [node name="Rat" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 80, 135.5 )
+position = Vector2( -16, 24 )
 
 [node name="Camera2D" type="Camera2D" parent="Walls/Rat"]
 position = Vector2( -32, 48 )
@@ -102,3 +102,4 @@ position = Vector2( 161, 241 )
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime5" method="_on_Rat_enemyTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime6" method="_on_Rat_enemyTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime7" method="_on_Rat_enemyTurn"]
+[connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime8" method="_on_Rat_enemyTurn"]
