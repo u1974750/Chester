@@ -21,7 +21,8 @@ func _input(event):
 	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:
 		previousPos = position
 		Global.turn = 1
-		$AnimatedSprite.play("jump_up")
+		if $AreaTop/HoverEffect.visible or $AreaBot/HoverEffect.visible or $AreaLeft/HoverEffect.visible or $AreaRight/HoverEffect.visible:
+			$AnimatedSprite.play("jump_up")
 		
 func _movPlayer():
 	if $AreaTop/HoverEffect.visible:

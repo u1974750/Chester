@@ -145,7 +145,7 @@ animations = [ {
 "frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": false,
 "name": "jump_up",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="GDScript" id=21]
