@@ -68,7 +68,7 @@ back = true
 position = Vector2( 49.5, 120.5 )
 
 [node name="Rat" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( -16, 24 )
+position = Vector2( 80, 135.5 )
 
 [node name="Camera2D" type="Camera2D" parent="Walls/Rat"]
 position = Vector2( -32, 48 )
@@ -91,6 +91,8 @@ polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -64.5, 20, -16.5, -4.5, 27.5
 
 [node name="Cofre" parent="." instance=ExtResource( 4 )]
 position = Vector2( 161, 241 )
+
+[node name="victory" parent="Cofre" instance=ExtResource( 5 )]
 
 [connection signal="playerTurn" from="Walls/Slime" to="Walls/Rat" method="_on_Slime_playerTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime" method="_on_Rat_enemyTurn"]
