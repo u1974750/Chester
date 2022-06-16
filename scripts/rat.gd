@@ -4,7 +4,7 @@ var _canLeft = true
 var _canRight = true
 var _canTop = true
 var _canBot = true
-var previousPos:Vector2 = Vector2.ZERO
+var side = 0 # 0 top, 1Bot, 2Left, 3Right
 
 signal enemyTurn
 
@@ -18,23 +18,36 @@ func _ready():
 func _input(event):
 	if not event is InputEventMouseButton:
 		return
-	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:
-		previousPos = position
-		Global.turn = 1
-		if $AreaTop/HoverEffect.visible or $AreaBot/HoverEffect.visible or $AreaLeft/HoverEffect.visible or $AreaRight/HoverEffect.visible:
+	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:		
+	
+		if $AreaTop/HoverEffect.visible: 
+			Global.turn = 1
+			side = 0
+			$AnimatedSprite.play("jump_up")
+		elif $AreaBot/HoverEffect.visible:
+			Global.turn = 1
+			side = 1
+			$AnimatedSprite.play("jump_up")
+		elif $AreaLeft/HoverEffect.visible:
+			Global.turn = 1
+			side = 2
+			$AnimatedSprite.play("jump_up")
+		elif $AreaRight/HoverEffect.visible: 
+			Global.turn = 1
+			side = 3
 			$AnimatedSprite.play("jump_up")
 		
 func _movPlayer():
-	if $AreaTop/HoverEffect.visible:
+	if side == 0:
 		position.x += 16
 		position.y -= 8
-	elif $AreaBot/HoverEffect.visible:
+	elif side == 1:
 		position.x -= 16
 		position.y += 8
-	elif $AreaLeft/HoverEffect.visible:
+	elif side == 2:
 		position.x -= 16
 		position.y -= 8
-	elif $AreaRight/HoverEffect.visible:
+	elif side == 3:
 		position.x += 16
 		position.y += 8
 	else:
