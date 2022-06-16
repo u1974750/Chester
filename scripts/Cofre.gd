@@ -21,4 +21,4 @@ func _on_AnimatedSprite_animation_finished():
 		get_tree().change_scene("res://escenes/Level2.tscn")
 	elif changeScene and Global.actualLevel == 3:
 		Global.actualLevel = 1
-		get_tree().change_scene("res://escenes/MainMenu.tscn")
+		

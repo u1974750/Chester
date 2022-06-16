@@ -82,7 +82,7 @@ custom_styles/hover = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 text = "PLAY"
 
-[node name="Play2" type="Button" parent="."]
+[node name="Exit" type="Button" parent="."]
 margin_left = 662.0
 margin_top = 358.0
 margin_right = 716.0
@@ -95,4 +95,4 @@ custom_styles/normal = SubResource( 2 )
 text = "EXIT"
 
 [connection signal="button_down" from="Play" to="." method="_on_Play_button_down"]
-[connection signal="button_down" from="Play2" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="Exit" to="." method="_on_Exit_button_down"]

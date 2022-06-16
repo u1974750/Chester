@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://escenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://escenes/rat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://escenes/Cofre.tscn" type="PackedScene" id=4]
+[ext_resource path="res://escenes/VicotryScreen.tscn" type="PackedScene" id=5]
 
 [node name="Level2" type="Node2D"]
 position = Vector2( 530, 134 )
@@ -90,6 +91,8 @@ polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -64.5, 20, -16.5, -4.5, 27.5
 
 [node name="Cofre" parent="." instance=ExtResource( 4 )]
 position = Vector2( 161, 241 )
+
+[node name="victory" parent="." instance=ExtResource( 5 )]
 
 [connection signal="playerTurn" from="Walls/Slime" to="Rat" method="_on_Slime_playerTurn"]
 [connection signal="enemyTurn" from="Rat" to="Walls/Slime" method="_on_Rat_enemyTurn"]
