@@ -1,5 +1,4 @@
 extends Node2D
-#get_tree().change_scene("res://escenes/Level1.tscn")
 
 var to_level_one = false
 
@@ -12,4 +11,8 @@ func _play():
 	$AnimatedSprite.play("open")
 	to_level_one = true
 
+
+func _on_AnimatedSprite_animation_finished():
+	if to_level_one:
+		get_tree().change_scene("res://escenes/Level1.tscn")
 
