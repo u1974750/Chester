@@ -4,6 +4,7 @@ var _canLeft = true
 var _canRight = true
 var _canTop = true
 var _canBot = true
+var previousPos:Vector2 = Vector2.ZERO
 
 signal enemyTurn
 
@@ -12,34 +13,39 @@ func _ready():
 	$AreaTop/HoverEffect.visible = false
 	$AreaLeft/HoverEffect.visible = false
 	$AreaRight/HoverEffect.visible = false
+	$AnimatedSprite.play("idle")
 
 func _input(event):
 	if not event is InputEventMouseButton:
 		return
 	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:
-		var previousPos = position
+		previousPos = position
 		Global.turn = 1
-		if $AreaTop/HoverEffect.visible:
-			position.x += 32
-			position.y -= 16
-		elif $AreaBot/HoverEffect.visible:
-			position.x -= 32
-			position.y += 16
-		elif $AreaLeft/HoverEffect.visible:
-			position.x -= 32
-			position.y -= 16
-		elif $AreaRight/HoverEffect.visible:
-			position.x += 32
-			position.y += 16
-		else:
-			Global.turn = 0
+		$AnimatedSprite.play("jump_up")
+		
+func _movPlayer():
+	if $AreaTop/HoverEffect.visible:
+		position.x += 16
+		position.y -= 8
+	elif $AreaBot/HoverEffect.visible:
+		position.x -= 16
+		position.y += 8
+	elif $AreaLeft/HoverEffect.visible:
+		position.x -= 16
+		position.y -= 8
+	elif $AreaRight/HoverEffect.visible:
+		position.x += 16
+		position.y += 8
+	else:
+		Global.turn = 0
 			
-		if Global.turn == 1: emit_signal("enemyTurn")
-
-	
-	
-func getPos():
-	return position
+	$AnimatedSprite.play("jump_down")
+	if Global.turn == 1: emit_signal("enemyTurn")
+			
+func _on_AreaRat_area_entered(area):
+	if area.name == "EnemyArea": 
+		$AnimatedSprite.play("hit")
+		
 	
 func _on_Area2D_area_entered(area):
 	if area.name == "AreaTop": _canTop = true
@@ -82,3 +88,14 @@ func _on_AreaRight_mouse_exited():
 
 func _on_Slime_playerTurn():
 	Global.turn = 0
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "hit":
+		$AnimatedSprite.play("death")
+	elif $AnimatedSprite.animation == "death":
+		get_tree().reload_current_scene()
+	elif $AnimatedSprite.animation == "jump_up":
+		_movPlayer()
+	elif $AnimatedSprite.animation == "jump_down":
+		$AnimatedSprite.play("idle")
