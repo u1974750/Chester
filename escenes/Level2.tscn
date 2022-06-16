@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://escenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://escenes/rat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://escenes/Cofre.tscn" type="PackedScene" id=4]
 
 [node name="Level2" type="Node2D"]
 position = Vector2( 530, 134 )
@@ -23,7 +24,7 @@ cell_size = Vector2( 32, 16 )
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -65538, 4, 0, -65537, 2, 0, -131072, 2, 0, -3, 4, 0, -2, 4, 0, -1, 6, 0, -65536, 6, 0, -65535, 2, 0, -65534, 2, 0, 65533, 4, 0, 65534, 5, 0, 2, 6, 0, 3, 2, 0, 6, 2, 0, 7, 2, 0, 131069, 2, 0, 131070, 5, 0, 65538, 6, 0, 65539, 5, 0, 65540, 4, 0, 65541, 4, 0, 65542, 4, 0, 65543, 5, 0, 65544, 2, 0, 196605, 2, 0, 196606, 5, 0, 131074, 6, 0, 131075, 5, 0, 131076, 6, 0, 131077, 4, 0, 131078, 6, 0, 131079, 5, 0, 131080, 5, 0, 131081, 2, 0, 262141, 2, 0, 196616, 5, 0, 196617, 2, 0, 196618, 6, 0, 196619, 6, 0, 327678, 2, 0, 327679, 2, 0, 262153, 7, 0, 262155, 6, 0, 393219, 2, 0, 458754, 6, 0, 458755, 2, 0, 524290, 5, 0, 524291, 2, 0, 589826, 5, 0, 589827, 2, 0, 655363, 5, 0, 720899, 5, 0 )
+tile_data = PoolIntArray( -65538, 4, 0, -65537, 2, 0, -131072, 2, 0, -3, 4, 0, -2, 4, 0, -1, 6, 0, -65536, 6, 0, -65535, 2, 0, -65534, 2, 0, 65533, 4, 0, 65534, 5, 0, 2, 6, 0, 3, 2, 0, 6, 2, 0, 7, 2, 0, 131069, 2, 0, 131070, 5, 0, 65538, 6, 0, 65539, 5, 0, 65540, 4, 0, 65541, 4, 0, 65542, 4, 0, 65543, 5, 0, 65544, 2, 0, 196605, 2, 0, 196606, 5, 0, 131074, 6, 0, 131075, 5, 0, 131076, 6, 0, 131077, 4, 0, 131078, 6, 0, 131079, 5, 0, 131080, 5, 0, 131081, 2, 0, 262141, 2, 0, 196616, 5, 0, 196617, 2, 0, 196618, 6, 0, 196619, 6, 0, 327678, 2, 0, 327679, 2, 0, 262155, 6, 0, 393219, 2, 0, 458754, 6, 0, 458755, 2, 0, 524290, 5, 0, 524291, 2, 0, 589826, 5, 0, 589827, 2, 0, 655363, 5, 0, 720899, 5, 0 )
 
 [node name="Slime" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( -80, 9 )
@@ -69,12 +70,26 @@ position = Vector2( 49.5, 120.5 )
 position = Vector2( 0, 32 )
 scale = Vector2( 1, 1 )
 
+[node name="Camera2D" type="Camera2D" parent="Rat"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = 200
+limit_top = 50
+limit_right = 850
+limit_bottom = 575
+smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2( 2, 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 visible = false
 polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -64.5, 20, -16.5, -4.5, 27.5, 17, -20, 42.5, 75.5, 89, 65.5, 95, 66, 100, 107, 121, -47.5, 199.5, -75.5, 186, 52.5, 121.5, 36, 114, 62.5, 101, 62.5, 95.5, 48, 88, 0, 112, 0.5, 115.5, 11, 121, -31.5, 143.5, -48, 135.5, -95.5, 159.5, -68.5, 177, -80, 184, -156, 145.5, 0, 68.5, -0.5, 63 )
+
+[node name="Cofre" parent="." instance=ExtResource( 4 )]
+position = Vector2( 161, 241 )
 
 [connection signal="playerTurn" from="Walls/Slime" to="Rat" method="_on_Slime_playerTurn"]
 [connection signal="enemyTurn" from="Rat" to="Walls/Slime" method="_on_Rat_enemyTurn"]
