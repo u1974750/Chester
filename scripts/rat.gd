@@ -19,7 +19,7 @@ func _input(event):
 	if not event is InputEventMouseButton:
 		return
 	if event.button_index == BUTTON_LEFT and event.pressed and Global.turn == 0:		
-	
+		$sound.play()
 		if $AreaTop/HoverEffect.visible: 
 			Global.turn = 1
 			side = 0

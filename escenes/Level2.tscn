@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://escenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://escenes/rat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://escenes/Cofre.tscn" type="PackedScene" id=4]
 [ext_resource path="res://escenes/VicotryScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sounds/Volume Alpha 18. Sweden.mp3" type="AudioStream" id=6]
 
 [node name="Level2" type="Node2D"]
 position = Vector2( 530, 134 )
@@ -92,6 +93,11 @@ polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -62.5, 21, -15, -2.5, 27.5, 
 position = Vector2( 161, 241 )
 
 [node name="victory" parent="Cofre" instance=ExtResource( 5 )]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+attenuation = 0.466516
 
 [connection signal="playerTurn" from="Walls/Slime" to="Walls/Rat" method="_on_Slime_playerTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime" method="_on_Rat_enemyTurn"]

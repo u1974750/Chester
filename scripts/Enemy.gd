@@ -36,6 +36,7 @@ func _mov():
 		$AnimatedSprite.flip_h = back
 		i = 0
 	$AnimatedSprite.play("jump_down")
+	$sound.play()
 	emit_signal("playerTurn")
 	
 
