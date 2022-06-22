@@ -68,7 +68,7 @@ back = true
 position = Vector2( 49.5, 120 )
 
 [node name="Rat" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( -16, 24 )
+position = Vector2( 1, 16 )
 
 [node name="Camera2D" type="Camera2D" parent="Walls/Rat"]
 position = Vector2( -32, 48 )
@@ -86,8 +86,7 @@ editor_draw_drag_margin = true
 scale = Vector2( 2, 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
-polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -64.5, 20, -16.5, -4.5, 27.5, 17, -20, 42.5, 75.5, 89, 65.5, 95, 66, 100, 107, 121, -47.5, 199.5, -75.5, 186, 52.5, 121.5, 36, 114, 62.5, 101, 62.5, 95.5, 48, 88, 0, 112, 0.5, 115.5, 11, 121, -31.5, 143.5, -48, 135.5, -95.5, 159.5, -68.5, 177, -80, 184, -156, 145.5, 0, 68.5, -0.5, 63 )
+polygon = PoolVector2Array( -91.5, 17.5, -79.5, 12, -62.5, 21, -15, -2.5, 27.5, 17, -20, 42.5, 75.5, 89, 65.5, 95, 66, 100, 107, 121, -47.5, 199.5, -75, 187, 21, 140, 54.5, 122.5, 36, 114, 62.5, 101, 62.5, 95.5, 48, 88, 0, 112, 0.5, 115.5, 8.5, 119.5, -34.5, 140, -46.5, 133.5, -101, 161, -69.5, 179, -80, 184, -156, 145.5, 0, 68.5, -0.5, 63 )
 
 [node name="Cofre" parent="." instance=ExtResource( 4 )]
 position = Vector2( 161, 241 )
@@ -103,3 +102,5 @@ position = Vector2( 161, 241 )
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime6" method="_on_Rat_enemyTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime7" method="_on_Rat_enemyTurn"]
 [connection signal="enemyTurn" from="Walls/Rat" to="Walls/Slime8" method="_on_Rat_enemyTurn"]
+[connection signal="area_entered" from="Area2D" to="Walls/Rat" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Walls/Rat" method="_on_Area2D_area_exited"]
