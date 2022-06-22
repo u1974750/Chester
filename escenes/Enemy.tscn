@@ -142,7 +142,7 @@ script = ExtResource( 3 )
 scale = Vector2( 0.6987, 0.6987 )
 frames = SubResource( 9 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -151,6 +151,7 @@ scale = Vector2( 0.411504, -0.197451 )
 shape = SubResource( 10 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 autostart = true
 
