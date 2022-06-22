@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://tileSet.tres" type="TileSet" id=2]
@@ -12,6 +12,8 @@ corner_radius_top_left = 30
 corner_radius_top_right = 5
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -79,6 +81,7 @@ rect_scale = Vector2( 3.14755, 3.14755 )
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
 custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 3 )
 custom_styles/normal = SubResource( 2 )
 text = "PLAY"
 

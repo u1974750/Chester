@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-
+#inicialitza ocult
 func _ready():
 	$ColorRect.visible = false
 	 

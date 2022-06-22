@@ -14,6 +14,7 @@ signal playerTurn
 func _ready():
 	$AnimatedSprite.flip_h = back
 
+#moviment de l'enemic
 func _mov():
 	previousPos = position
 	if dir:
@@ -40,14 +41,16 @@ func _mov():
 	emit_signal("playerTurn")
 	
 
+#signal amb el Timer
 func _on_Timer_timeout():
 	$AnimatedSprite.play("jump_up")
 	$Timer.wait_time = 1
 
+#canvi de turn, activa el timer
 func _on_Rat_enemyTurn():
 	$Timer.start()
 
-
+#gestiona el final de les animacioins
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "jump_up":
 		_mov()
@@ -56,7 +59,7 @@ func _on_AnimatedSprite_animation_finished():
 	elif $AnimatedSprite.animation == "full_jump":
 		_mov()
 
-
+#gestiona (signal) la colisio amb la rata.
 func _on_Area2D_area_entered(area):
 	if area.name == "AreaRat":
 		$AnimatedSprite.play("full_jump")

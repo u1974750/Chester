@@ -8,6 +8,7 @@ var side = 0 # 0 top, 1Bot, 2Left, 3Right
 
 signal enemyTurn
 
+#prepara les 4 arees de moviment com a ocultes
 func _ready():
 	$AreaBot/HoverEffect.visible = false
 	$AreaTop/HoverEffect.visible = false
@@ -15,6 +16,8 @@ func _ready():
 	$AreaRight/HoverEffect.visible = false
 	$AnimatedSprite.play("idle")
 
+
+#GESTIONA INPUT -> moviment de la rata
 func _input(event):
 	if not event is InputEventMouseButton:
 		return
@@ -36,7 +39,8 @@ func _input(event):
 			Global.turn = 1
 			side = 3
 			$AnimatedSprite.play("jump_up")
-		
+
+#gestiona el moviment		
 func _movPlayer():
 	if side == 0:
 		position.x += 16
@@ -55,19 +59,20 @@ func _movPlayer():
 			
 	$AnimatedSprite.play("jump_down")
 	if Global.turn == 1: emit_signal("enemyTurn")
-			
+	
+#signal colisió amb l'enemic		
 func _on_AreaRat_area_entered(area):
 	if area.name == "EnemyArea": 
 		$AnimatedSprite.play("hit")
 		
-	
+#signal area de moviment al entrar a la colisió del mapa	
 func _on_Area2D_area_entered(area):
 	if area.name == "AreaTop": _canTop = true
 	elif area.name == "AreaBot": _canBot = true
 	elif area.name == "AreaLeft": _canLeft = true
 	elif area.name == "AreaRight": _canRight = true
 	
-
+#signal area de moviment al sortir a la colisió del mapa	
 func _on_Area2D_area_exited(area):
 	if area.name == "AreaTop": _canTop = false
 	elif area.name == "AreaBot": _canBot = false
@@ -75,7 +80,7 @@ func _on_Area2D_area_exited(area):
 	elif area.name == "AreaRight": _canRight = false
 
 
-	
+#grup de signals gestiona el hover del ratolí mostrant les arees de moviment	
 func _on_AreaTop_mouse_entered():
 	if _canTop and Global.turn == 0:
 		$AreaTop/HoverEffect.visible = true
@@ -90,6 +95,7 @@ func _on_AreaRight_mouse_entered():
 		$AreaRight/HoverEffect.visible = true
 
 
+#grup de signals gestiona el hover del ratolí ocultant les arees de moviment	
 func _on_AreaTop_mouse_exited():
 	$AreaTop/HoverEffect.visible = false
 func _on_AreaBot_mouse_exited():
@@ -99,11 +105,11 @@ func _on_AreaLeft_mouse_exited():
 func _on_AreaRight_mouse_exited():
 	$AreaRight/HoverEffect.visible = false
 
-
+#canvi de turn
 func _on_Slime_playerTurn():
 	Global.turn = 0
 
-
+#gestiona el final de les animacions
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "hit":
 		$AnimatedSprite.play("death")
